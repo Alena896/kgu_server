@@ -1,28 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <main>
-        {{define "content"}}
-        <table>
-            {{range .}}
-                <tr>
-                    <td>{{.Amount}}</td>
-                    <td>{{.Description}}</td>
-                </tr>
-            {{end}}
-        </table>
-    </main>
-    <form method="POST" action="/add">
-        <input name="amount">
-        <input name="description">
-        <input name="date">
-        <button>submit</button>
+
+    {{define "content"}}
+    <style>
+    body{
+        background-color: #121212;
+        color: white;
+    }
+    table{
+        width: 80%;
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+        
+    }
+    td{
+        padding: 12px;
+        border-bottom: 1px solid purple;
+        color: white !important;
+    }
+    input{
+        border-radius: 8px;
+        text-align: center;
+    }
+    form{
+        margin-top: 20px;
+        text-align: center;
+    }
+    h1 {
+        text-align: center;
+        color: purple;
+        margin-bottom: 20px;
+    }
+    button {
+            background-color: purple;
+            color: white;
+            border-radius: 8px;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+</style>
+<h1>Таблица расходов</h1>
+    <table>
+        <thead>
+            <th>Стоимость</th>
+            <th>Название товара</th>
+            <th>Дата</th>
+        </thead>
+        {{range .}}
+            <tr>
+                <td>{{.Amount}}</td>
+                <td>{{.Description}}</td>
+                <td>{{.Date}}</td>
+            </tr>
         {{end}}
-    </form>
-</body>
-</html>
+    </table>
+<form method="POST" action="/add" >
+    <input name="amount" placeholder="Введите сумму">
+    <input name="description" placeholder="Введите название">
+    <input name="date" placeholder="Введите дату">
+    <button type="submit">submit</button>
+</form>
+{{end}}
