@@ -1,0 +1,2 @@
+CREATE TABLE IF NOT EXISTS expenses (id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                amount INTEGER, description VARCHAR(50), date DATE);

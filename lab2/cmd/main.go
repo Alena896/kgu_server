@@ -1,9 +1,15 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 	"kgu_server/internal/handlers"
+	"kgu_server/internal/repository"
 	"net/http"
+
+	"os"
+
+	_ "modernc.org/sqlite"
 )
 
 func aboutHandler(conclusion http.ResponseWriter, input *http.Request) {
@@ -16,8 +22,22 @@ func aboutHandler(conclusion http.ResponseWriter, input *http.Request) {
 }
 
 func main() {
+	db, err := sql.Open("sqlite", "expenses.db")
+	if err != nil {
+		panic(err)
+	}
+	queryBytes, err := os.ReadFile("table")
+	if err != nil {
+		panic(err)
+	}
+	_, err = db.Exec(string(queryBytes))
+	if err != nil {
+		panic(err)
+	}
+	repo := repository.NewExpenseRepository(db)
+	h := &handlers.ExpenseHandler{Repo: repo}
 	http.HandleFunc("/about", aboutHandler)
-	http.HandleFunc("/", handlers.ListExpensesHandler)
-	http.HandleFunc("/add", handlers.AddExpenseHandler)
+	http.HandleFunc("/", h.ListExpensesHandler)
+	http.HandleFunc("/add", h.AddExpenseHandler)
 	http.ListenAndServe(":8080", nil)
 }
