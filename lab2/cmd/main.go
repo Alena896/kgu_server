@@ -39,5 +39,7 @@ func main() {
 	http.HandleFunc("/about", aboutHandler)
 	http.HandleFunc("/", h.ListExpensesHandler)
 	http.HandleFunc("/add", h.AddExpenseHandler)
+	http.HandleFunc("/delete", h.DeleteExpenseHandler)
+	http.HandleFunc("/edit", h.EditExpenseHandler)
 	http.ListenAndServe(":8080", nil)
 }

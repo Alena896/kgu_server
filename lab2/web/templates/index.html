@@ -45,12 +45,20 @@
             <th>Стоимость</th>
             <th>Название товара</th>
             <th>Дата</th>
+            <th>Категория</th>
+            <th></th>
         </thead>
         {{range .}}
             <tr>
                 <td>{{.Amount}}</td>
                 <td>{{.Description}}</td>
                 <td>{{.Date}}</td>
+                <td style="color: white;">{{.Category}}
+                </td>
+                <td>
+                    <a style="color: #00ffff; font-weight: bold; margin-right: 15px;" href="/edit?id={{.Id}}">Изменить</a>
+                    <a style="color: #ff0055; font-weight: bold;" href="/delete?id={{.Id}}" onclick="return confirm('Вы точно хотите удалить этот расход?')">Удалить</a>
+                </td>
             </tr>
         {{end}}
     </table>
@@ -58,6 +66,7 @@
     <input name="amount" placeholder="Введите сумму">
     <input name="description" placeholder="Введите название">
     <input name="date" placeholder="Введите дату">
+    <input name="name_category" placeholder="Введите категорию">
     <button type="submit">submit</button>
 </form>
 {{end}}

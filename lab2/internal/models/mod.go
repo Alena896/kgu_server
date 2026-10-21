@@ -5,4 +5,7 @@ type Expense struct {
 	Amount      float64
 	Description string
 	Date        string
+	Category    string
+	CategoryId  int64
+	Action      string
 }

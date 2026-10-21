@@ -1,0 +1,52 @@
+{{define "content"}}
+<style>
+    body{
+        background-color: #121212;
+        color: white;
+    }
+    table{
+        width: 80%;
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+        
+    }
+    td{
+        padding: 12px;
+        border-bottom: 1px solid purple;
+        color: white !important;
+    }
+    input{
+        border-radius: 8px;
+        text-align: center;
+        border: 1px solid white;
+    }
+    form{
+        margin-top: 20px;
+        text-align: center;
+    }
+    h1 {
+        text-align: center;
+        color: purple;
+        margin-bottom: 20px;
+    }
+    button {
+            background-color: purple;
+            color: white;
+            border-radius: 8px;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+</style>
+<h1>Редактирование данных</h1>
+<form method="POST" action="/edit">
+    <input name="id" value="{{.Id}}" type="hidden">
+    <label style="color: white;">Стоимость:</label><input name="amount" value="{{.Amount}}">
+    <label style="color: white;">Товар:</label><input name="description" value="{{.Description}}">
+    <label style="color: white;">Дата:</label><input name="date" value="{{.Date}}" type="text">
+    <label style="color: white;">Категория:</label><input name="name_category" value="{{.Category}}">
+    <button type="submit">submit</button>
+</form>
+{{end}} 
+//
